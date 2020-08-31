@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		o-x game
+	</title>
+	<style type="text/css">
+		th{
+			height: 70px;
+			width: 200px;
+		}
+		
+		.box{
+			height: 200px;
+			width: 200px;
+			float: left;
+			background-color:white;
+
+		}
+		p{
+			font-family: 'Calibri'; font-size: 140px;font-weight: bold; margin-top: 18px;text-align: center;
+			-webkit-text-stroke-width: 3px; 
+            -webkit-text-stroke-color: black;
+		}
+		#refresh{
+			-webkit-text-stroke-width: 0px; 
+            -webkit-text-stroke-color: white;
+		}
+		#reset{
+			-webkit-text-stroke-width: 0px; 
+            -webkit-text-stroke-color: white;
+		}
+		#changeName{
+			-webkit-text-stroke-width: 0px; 
+            -webkit-text-stroke-color: white;
+		}
+		#head{
+			font-family: 'Calibri'; font-size: 50px;font-weight: bold;color: #0288d1	;
+			-webkit-text-stroke-width: 2px; 
+            -webkit-text-stroke-color: black;
+		}
+		.input{
+			border-radius: 10px;
+		}
+		.button{
+			background-color: #2196f3; border: 0px; height:50px;width: 160px;color: white;font-size: 25px;border-radius: 5px;
+		}
+	</style>
+
+
+
+
+	<style type="text/css">
+		/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  width:600px; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+
+	</style>
+</head>
+<body  style="background-color:white;" id="body">
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div id="" style="margin: auto;height: 470px;width: 600px; box-shadow: 5px 5px 4px 5px #888888; padding-top:2px; border-radius: 10px;background-color:#bbdefb;">
+		<h3 align="center" id="head">Enter Player Names</h3>
+		<h6 align="center"><input class="input" type="text" id="player1" placeholder="Player 1 Name" style="padding-left: 10px; font-size: 25px; width: 550px;height: 50px;margin-bottom: 20px;border:1px solid #bdbdbd;"></h6>
+		<h6 align="center"><input class="input" type="text" name="" id="player2" placeholder="Player 2 Name" style="padding-left: 10px; font-size: 25px; width: 550px;height: 50px;border:1px solid #bdbdbd;"></h6>
+		<div style="margin: auto; width: 372px;height: 100px; margin-top: 40px;">
+			<input class="button" type="button" value="Skip" name="" id="Skip" style="float: left;  ">
+		    <input class="button" type="button" value="Done" id="Done" name="" style="float: left;margin-left: 30px; margin-bottom: 10px;">
+			<span id="err" style="font-size: 30px;color: red;display: none;font-weight: bold;">You Must Enter The Names..</span>
+		</div>
+
+	</div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+	
+	<p><span style="color: #64dd17;">Tic</span>-<span style="color: #9c27b0;">Tac</span>-<span style="color: #fb8c00;">Toe</span></p>
+	<div style="width: 640px;height: 640px; margin: auto;margin-top: 0px; background-color:black ;border-color: white; border:0px;" id="ground">
+	<div>
+		<div onclick="check(1)" class="box" id="box1" style="margin-right: 20px; margin-bottom: 20px;"><p id="1"></p></div>
+		<div onclick="check(2)" class="box" id="box2" style="margin-right: 20px;margin-bottom: 20px;"><p id="2"></p></div>
+		<div onclick="check(3)" class="box" id="box3" style="margin-bottom: 20px;"><p id="3"></p></div>
+	</div>
+	
+	<div>	
+		<div onclick="check(4)" class="box" id="box4" style="margin-right: 20px; margin-bottom: 20px;"><p id="4"></p></div>
+		<div onclick="check(5)" class="box" id="box5" style="margin-right: 20px;margin-bottom: 20px;"><p id="5"></p></div>
+		<div onclick="check(6)" class="box" id="box6" style="margin-bottom: 20px;"><p id="6"></p></div>
+	</div>
+	<div>
+		<div onclick="check(7)" class="box" id="box7" style="margin-right: 20px;"><p id="7"></p></div>
+		<div onclick="check(8)" class="box" id="box8" style="margin-right: 20px;"><p id="8"></p></div>
+		<div onclick="check(9)" class="box" id="box9"><p id="9"></p></div>
+	</div>
+
+	</div>
+
+	
+
+	<p align="center">
+		<input type="button" id="refresh" onclick="refresh()" name="" value="New Game" style="background-color: #2196f3; border: 0px; height:60px;width: 170px;color: white;font-size: 25px;" ></p>
+	
+
+	<div style="display: none;" id="div">
+	<p align="center" style="margin-top:-20px;color: green;"  id="winner"> </p>
+	</div>
+
+	<table cellspacing="0" border="2" style="margin: auto; text-align: center;font-size: 50px;">
+		<tr>
+			<th id="name1" style="color: black" ></th>
+			<th id="name2" style="color: black" ></th>
+		</tr>
+		<tr>
+			<td id="x" style="color: black"></td>
+			<td id="o" style="color: black"></td>
+		</tr>
+	</table>
+
+	<p align="center">
+		<input type="button" id="changeName" onclick="active()" name="" value="Change Name" style="background-color: #2196f3; border: 0px; height:60px;width: 170px;color: white;font-size: 25px;" >
+
+		<input type="button" id="reset" onclick="reset()" name="" value="Reset Score" style="background-color: #2196f3; border: 0px; height:60px;width: 170px;color: white;font-size: 25px;" >
+
+		<input type="button" id="reset" onclick="ChangeTheme()" name="" value="Change theme" style="background-color: #2196f3; border: 0px; height:60px;width: 170px;color: white;font-size: 25px;" >
+	</p>
+	<span id="Demo" style="color: white;"></span>
+
+	<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+
+
+		var modal = document.getElementById("myModal").style.display="block";
+
+  
+});
+
+
+
+
+
+	</script>
+	
+	<script type="text/javascript">
+
+		var doneBtn=document.getElementById("Done");
+		var player2;
+		var player1;
+		
+
+
+		var span = document.getElementById("Skip");
+
+        span.onclick = function() {
+ 			 player2="Kaliya";
+ 			 player1="Bheem";
+ 			 
+ 			 document.getElementById("name1").innerHTML=player1;
+			 document.getElementById("name2").innerHTML=player2;
+			 document.getElementById("myModal").style.display="none";
+					}
+
+		doneBtn.onclick=function names() {
+			if(document.getElementById("player1").value==0 && document.getElementById("player2").value==0)
+			{
+				document.getElementById('err').style.display="block";
+			}
+			else{
+				player1=document.getElementById("player1").value;
+				player2=document.getElementById("player2").value;
+				//alert(player1+player2);
+
+				document.getElementById("name1").innerHTML=player1;
+				document.getElementById("name2").innerHTML=player2;
+				document.getElementById("myModal").style.display="none";
+			}
+		}
+
+		var i=1;
+		x=0;
+		o=0;
+		a1=-1;a2=-2;a3=-3;
+		b1=-4;b2=-5;b3=-6;
+		c1=-7;c2=-8;c3=-9;
+		clickCount=0;
+		document.getElementById('o').innerHTML=o;
+		document.getElementById('x').innerHTML=x;
+
+		function reset() {
+			x=0;
+			o=0;
+			document.getElementById('o').innerHTML=o;
+		document.getElementById('x').innerHTML=x;
+		}
+
+		function active() {
+			document.getElementById("myModal").style.display="block";
+			// body...
+		}
+
+		function refresh() {
+
+		a1=-1;a2=-2;a3=-3;
+		b1=-4;b2=-5;b3=-6;
+		c1=-7;c2=-8;c3=-9;
+
+			for (var l = 1; l <=9; l++) {
+				document.getElementById(l).innerHTML=' ';
+				document.getElementById('div').style.display='none';
+				
+			}
+			for (var w = 1; w <=9; w++) {
+					document.getElementById("box"+w).setAttribute("onclick","check('"+w+"')");
+				}
+			i=1;
+			clickCount=0;
+			
+		}
+		function winner(w) {
+
+			if ((a1==a2 && a2==a3) || (b1==b2 && b2==b3) || (c1==c2 && c2==c3) || (a1==b1 && b1==c1) || (a2==b2 && b2==c2) || (a3==b3 && b3==c3) || (a1==b2 && b2==c3) || (c1==b2 && b2==a3) ) 
+				{
+					a1=-1;a2=-2;a3=-3;
+					b1=-4;b2=-5;b3=-6;
+					c1=-7;c2=-8;c3=-9;
+					clickCount=0;
+				
+				document.getElementById('div').style.display='block';
+				if (w==0) {
+					document.getElementById('winner').innerHTML=player2+' wins..!!';o++;
+					document.getElementById('o').innerHTML=o;
+				}
+				else{
+					document.getElementById('winner').innerHTML=player1+' wins..!!';x++;
+					document.getElementById('x').innerHTML=x;
+				}
+
+				for (var i = 1; i <=9; i++) {
+					document.getElementById("box"+i).setAttribute("onclick"," ");
+				}
+				
+					
+				}
+			else if(clickCount==9){
+
+					a1=-1;a2=-2;a3=-3;
+					b1=-4;b2=-5;b3=-6;
+					c1=-7;c2=-8;c3=-9;
+					clickCount=0;
+
+					document.getElementById('div').style.display='block';
+					document.getElementById('winner').innerHTML='Match Draw..!!';
+			 }
+		}
+
+		function check(n) {
+			clickCount++;
+			if(i%2==0){
+
+					if (n==1) {a1=0;}
+					if (n==2) {a2=0;}
+					if (n==3) {a3=0;}
+					if (n==4) {b1=0;}
+					if (n==5) {b2=0;}
+					if (n==6) {b3=0;}
+					if (n==7) {c1=0;}
+					if (n==8) {c2=0;}
+					if (n==9) {c3=0;}
+			document.getElementById(n).style.color='#0d47a1';
+			document.getElementById(n).innerHTML='O';
+			document.getElementById("box"+n).setAttribute("onclick"," ");
+			winner(0);
+				}
+			else{
+				    if (n==1) {a1=1;}
+					if (n==2) {a2=1;}
+					if (n==3) {a3=1;}
+					if (n==4) {b1=1;}
+					if (n==5) {b2=1;}
+					if (n==6) {b3=1;}
+					if (n==7) {c1=1;}
+					if (n==8) {c2=1;}
+					if (n==9) {c3=1;}
+				document.getElementById(n).style.color='#b71c1c';
+				document.getElementById(n).innerHTML='X';
+				document.getElementById("box"+n).setAttribute("onclick"," ");
+				winner(1);
+			}
+			i++;
+		}
+
+		function ChangeTheme()
+		{
+			
+			var elem = document.getElementById("body");
+  			var theCSSprop = window.getComputedStyle(elem, null).getPropertyValue("background-color");
+
+  			if(theCSSprop == 'rgb(0, 0, 0)'){
+
+  				document.getElementById("body").style.background='white';
+  				document.getElementById("ground").style.background='black';
+  				document.getElementById("name1").style.color='black';
+  				document.getElementById("name2").style.color='black';
+  				document.getElementById("x").style.color='black';
+  				document.getElementById("o").style.color='black';
+  				var x=document.getElementsByClassName('box');
+  				for (var i = 0; i <=8; i++) {
+  					x[i].style.background='white';
+  				}
+  			}
+  			else
+  			{
+  				document.getElementById("body").style.background='black';
+  				document.getElementById("ground").style.background='white';
+  				document.getElementById("name1").style.color='white';
+  				document.getElementById("name2").style.color='white';
+  				document.getElementById("x").style.color='white';
+  				document.getElementById("o").style.color='white';
+  				var x=document.getElementsByClassName('box');
+  				for (var i = 0; i <=8; i++) {
+  					x[i].style.background='black';
+  				}
+  			}
+
+
+		}
+	</script>
+</body>
+</html>
